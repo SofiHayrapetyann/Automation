@@ -3,7 +3,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class MyFirstTest {
-    int a = 6;
+
 
     @Test
     public void  Check_a_IsEven() {

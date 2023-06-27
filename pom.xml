@@ -7,27 +7,6 @@
     <groupId>org.example</groupId>
     <artifactId>Automation</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <dependencies>
-    <dependency>
-        <groupId>org.testng</groupId>
-        <artifactId>testng</artifactId>
-        <version>7.8.0</version>
-        <scope>test</scope>
-    </dependency>
-            </dependencies>
-    <plugins/>
-    <plugin/>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-jar-plugin</artifactId>
-    <configuration/>
-    <addClaspath>true</addClaspath>
-    <mainClass>src/main/java/Main.java</mainClass>
-    <includes>
-        <include/>%regex[.*(MyFirstTest).*]</includes>
-    <includes/>
-    <configuration/>
-    <plugin/>
-    <plugins/>
 
 
     <properties>
@@ -35,5 +14,59 @@
         <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+<dependencies>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.8.0</version>
+            <scope>test</scope>
+        </dependency>
+    <dependency>
+    <groupId>org.example</groupId>
+    <artifactId>TestProject</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+        <groupId>respo</groupId>
+        <artifactId>reacher</artifactId>
+        <version>0.3.0</version>
+    </dependency>
+
+</dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>org.example.MethodMain</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.1.2</version>
+            <configuration>
+                <suiteXmlFiles>
+                    <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>                </suiteXmlFiles>
+            </configuration>
+        </plugin>
+        </plugins>
+    </build>
+    <repositories>
+        <repository>
+            <id>clojars</id>
+            <name>Clojars</name>
+            <url>https://repo.clojars.org/</url>
+        </repository>
+    </repositories>
+
 
 </project>
