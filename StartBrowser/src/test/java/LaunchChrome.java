@@ -9,10 +9,11 @@ import static java.lang.Thread.sleep;
 
 public class LaunchChrome {
     WebDriver driver;
+
     @BeforeClass
-    public void beforeLaunchingBrowser(){
-        System.setProperty("webdriver.chrome.driver","src/main/resources/chromedriver");
-        driver=new ChromeDriver();
+    public void beforeLaunchingBrowser() {
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+        driver = new ChromeDriver();
     }
 
 
@@ -20,6 +21,7 @@ public class LaunchChrome {
     public void launchChrome() {
         driver.get("chrome://version");
     }
+
     @AfterClass
     public void afterLaunchingChrome() throws InterruptedException {
         sleep(4000);
