@@ -16,7 +16,6 @@ public class TestSaucedemoLogin extends BeforeAfterMethods {
         newElement1.sendKeys("secret_sauce");
         driver.findElement(By.name("login-button")).click();
         Assert.assertEquals(url, driver.getCurrentUrl());
-        logoutTest();
 
     }
 
