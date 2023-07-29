@@ -1,8 +1,6 @@
 package Homework5;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -25,6 +23,7 @@ public class ForUTest {
     private String expectedPrice1;
     WebDriver driver = new ChromeDriver();
     String Url;
+    private int i=0;
 
     @BeforeMethod
     public void setUp() {
@@ -34,17 +33,31 @@ public class ForUTest {
     @Test
     public void testAddToBasket() throws InterruptedException {
         driver.get(Url);
+        driver.manage().window().maximize();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        WebElement realName = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='swiper-slide']//div/p//a[@href='/hy/product/zartucic-kupong']")));
+        WebElement realName = driver.findElement(By.xpath("//div[@id = 'offer1']//div[@class = 'swiper-slide']" +
+                "//p[contains(@class, 'item_name')]/a"));
         WebElement realPrice = driver.findElement(By.xpath("//div[@id='offer1']//div[@class='swiper-slide'][1]//div[contains(@class, 'price_basket')]" +
                 "/p/span/span"));
-        WebElement basketElement = driver.findElement(By.xpath("//div[@id='offer1']//div[@class='swiper-slide'][1]//div[@class='item_basket']"));
-        basketElement.click();
+        WebElement basketElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='offer1']//div" +
+                "[@class='swiper-slide'][1]//div[@class='item_basket']")));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);",basketElement);
+        while(i<5){
+            try{
+                basketElement.click();
+                break;
+            }catch (ElementNotInteractableException e){
+                Thread.sleep(500);
+                i++;
+            }
+        }
         WebElement toBasketElm = driver.findElement(By.xpath("//div[@id='basketIcon']"));
-        toBasketElm.click();
-        WebElement expectedName = driver.findElement(By.xpath("//div[@class='spinner_flex']//a//h4"));
+            toBasketElm.click();
+        WebElement expectedName = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='spinner_flex']//a//h4")));
         WebElement expectedPrice = driver.findElement(By.xpath("//p/span[@id='pricedfb6164402e24b9f0f795b242d26916d']"));
         WebElement totalPrice = driver.findElement(By.xpath("//span[@id = 'cartTotalPrice']"));
+
         actualName = realName.getText();
         actualPrice = realPrice.getText();
         expectedName1 = expectedName.getText();
