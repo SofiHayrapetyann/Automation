@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -26,8 +27,9 @@ public class AmazonTest extends BaseTestAmazon {
     public void checkAmountOfNmbrsWhileSearching() {
         WebElement allButton = driver.findElement(By.xpath("//div[@id='nav-search-dropdown-card']//div[@class='nav-search-scope nav-sprite']"));
         allButton.click();
-        WebElement bookElm = driver.findElement(By.xpath("//span[@id='nav-search-label-id']//..//..//select//option[contains(@value,'search-alias')][6]"));
-        bookElm.click();
+        WebElement bookButton=driver.findElement(By.xpath("//select[@id='searchDropdownBox']"));
+        Select select=new Select(bookButton);
+        select.selectByValue("search-alias=stripbooks-intl-ship");
         WebElement searchElm = driver.findElement(By.xpath("//div//input[@id='twotabsearchtextbox']"));
         searchElm.sendKeys("Mark Twain");
         WebElement searchButton = driver.findElement(By.xpath("//span[@id='nav-search-submit-text']//input[@id]"));
