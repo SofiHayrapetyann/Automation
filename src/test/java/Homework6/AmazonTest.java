@@ -29,7 +29,7 @@ public class AmazonTest extends BaseTestAmazon {
         allButton.click();
         WebElement bookButton=driver.findElement(By.xpath("//select[@id='searchDropdownBox']"));
         Select select=new Select(bookButton);
-        select.selectByValue("search-alias=stripbooks-intl-ship");
+        select.selectByVisibleText("Books");
         WebElement searchElm = driver.findElement(By.xpath("//div//input[@id='twotabsearchtextbox']"));
         searchElm.sendKeys("Mark Twain");
         WebElement searchButton = driver.findElement(By.xpath("//span[@id='nav-search-submit-text']//input[@id]"));
