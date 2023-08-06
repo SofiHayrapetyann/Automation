@@ -10,12 +10,19 @@ import java.time.Duration;
 
 public class BasePracitceExpanding   extends BaseTest.BaseTest {
 
-     String BASEURL ="https://practice.expandtesting.com/webpark";
+     String BASE_URL ="https://practice.expandtesting.com/webpark";
 
      public static int takeAmountOfMoney(String text) {
           String[] array = text.split(".00€");
           return Integer.parseInt(array[0]);
      }
+     public static int calculateCostOfParking(int time){
+          if (time == 24) {
+               return 24;
+          }
+          return 2 + 2 * (time - 1);
+     }
+     }
 
 
-}
+
