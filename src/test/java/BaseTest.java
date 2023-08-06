@@ -3,10 +3,7 @@ package BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 import static java.lang.Thread.sleep;
 
@@ -22,6 +19,10 @@ public class BaseTest{
     public void configuringBeforeRun(){
         ChromeOptions options = new ChromeOptions();
         driver = new ChromeDriver(options);
+    }
+   @BeforeMethod
+   public void maximize(){
+        driver.manage().window().maximize();
     }
 
     @AfterClass
